@@ -11,10 +11,15 @@ cd em-test
 composer install
 ```
 
-### Build the image and run the script
+### Build the docker image and run the script
 ```
 docker build -qt emendis-test . 
 docker run --rm emendis-test
+```
+
+### Alternatively, run the PHP script directly
+```
+php index.php
 ```
 
 ## Questions / Thoughts
