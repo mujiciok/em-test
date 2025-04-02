@@ -17,10 +17,22 @@ abstract class Container
     {
         return sprintf(
             '%s %scm x %scm x %scm',
-            static::class,
+            $this->getName(),
             $this->width,
             $this->height,
             $this->length,
         );
+    }
+
+    public function getName(): string
+    {
+        $containerNameSegments = explode('\\', static::class);
+
+        return array_pop($containerNameSegments);
+    }
+
+    public function getVolume(): float
+    {
+        return $this->width * $this->height * $this->length;
     }
 }

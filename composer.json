@@ -5,6 +5,9 @@
   "autoload": {
     "psr-4": {
       "App\\": "src/"
-    }
+    },
+    "files": [
+      "src/Helpers/helpers.php"
+    ]
   }
 }

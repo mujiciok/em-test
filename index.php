@@ -9,34 +9,49 @@ use App\Models\StandardDryContainer40;
 use App\Services\ContainerCalculator;
 use App\Services\OutputFormatter;
 
-$calculator = new ContainerCalculator([
+$availableContainerTypes = [
+//    StandardDryContainer10::class,
     StandardDryContainer40::class,
-    StandardDryContainer10::class,
-]);
-$transport1 = [
-    new BoxSet(boxType: new Box(78, 79, 93), amount: 27),
 ];
-OutputFormatter::printTransport($transport1);
-OutputFormatter::printSolution($calculator->calculate($transport1));
+$calculator = new ContainerCalculator($availableContainerTypes);
 
-$calculator = new ContainerCalculator([
-    StandardDryContainer40::class,
-    StandardDryContainer10::class,
-]);
+// @TODO create TransportHandler class (DRY)
+$transport1 = [
+    new BoxSet(
+        boxType: new Box(
+            width: 78,
+            height: 79,
+            length: 93,
+//@TODO enable rotation on different axes, for different results
+//            rotateZ: true,
+//            rotateY: true,
+//            rotateX: true,
+        ),
+        amount: 27,
+    ),
+];
+$calculator->setCargo($transport1);
+foreach ($calculator->getCargo() as $cargo) {
+    OutputFormatter::printCargo($cargo);
+    OutputFormatter::printSolution($calculator->calculate($cargo));
+}
+
 $transport2 = [
     new BoxSet(boxType: new Box(30, 60, 90), amount: 24),
     new BoxSet(boxType: new Box(75, 100, 200), amount: 33),
 ];
-OutputFormatter::printTransport($transport2);
-OutputFormatter::printSolution($calculator->calculate($transport2));
+$calculator->setCargo($transport2);
+foreach ($calculator->getCargo() as $cargo) {
+    OutputFormatter::printCargo($cargo);
+    OutputFormatter::printSolution($calculator->calculate($cargo));
+}
 
-$calculator = new ContainerCalculator([
-    StandardDryContainer40::class,
-    StandardDryContainer10::class,
-]);
 $transport3 = [
     new BoxSet(boxType: new Box(80, 100, 200), amount: 10),
     new BoxSet(boxType: new Box(60, 80, 150), amount: 25),
 ];
-OutputFormatter::printTransport($transport3);
-OutputFormatter::printSolution($calculator->calculate($transport3));
+$calculator->setCargo($transport3);
+foreach ($calculator->getCargo() as $cargo) {
+    OutputFormatter::printCargo($cargo);
+    OutputFormatter::printSolution($calculator->calculate($cargo));
+}

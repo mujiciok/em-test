@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 class ContainerSet
 {
     public function __construct(
-        public readonly Container $containerType,
+        public Container $containerType,
         public int $amount,
     ) {
     }
@@ -13,7 +15,7 @@ class ContainerSet
     public function __toString(): string
     {
         return sprintf(
-            '%d containers %s',
+            '%d containers [%s]',
             $this->amount,
             $this->containerType,
         );

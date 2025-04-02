@@ -7,21 +7,20 @@ use App\Models\ContainerSet;
 
 class OutputFormatter
 {
-    private const LINE = '#######################################################################';
-    private const DELIMITER = "#\t";
+    private const DELIMITER = '#############################################################################';
+    private const LINE = '---';
 
     /**
      * @param array<BoxSet> $transport
      * @return void
      */
-    public static function printTransport(array $transport): void
+    public static function printCargo(array $transport): void
     {
-        echo self::LINE . PHP_EOL;
         echo self::DELIMITER . PHP_EOL;
         foreach ($transport as $boxSet) {
-            echo self::DELIMITER . $boxSet . PHP_EOL;
+            echo $boxSet;
+            echo PHP_EOL;
         }
-        echo self::DELIMITER . PHP_EOL;
         echo self::LINE . PHP_EOL;
     }
 
@@ -32,9 +31,10 @@ class OutputFormatter
     public static function printSolution(array $transport): void
     {
         foreach ($transport as $boxSet) {
-            echo $boxSet . PHP_EOL;
+            echo $boxSet;
         }
         echo PHP_EOL;
+        echo self::DELIMITER . PHP_EOL;
         echo PHP_EOL;
     }
 }

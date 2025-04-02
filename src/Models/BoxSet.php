@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-class BoxSet
+readonly class BoxSet
 {
     public function __construct(
-        public readonly Box $boxType,
+        public Box $boxType,
         public int $amount,
     ) {
     }
@@ -13,7 +15,7 @@ class BoxSet
     public function __toString(): string
     {
         return sprintf(
-            '%d boxes %s',
+            '%d boxes [%s]',
             $this->amount,
             $this->boxType,
         );
